@@ -120,6 +120,17 @@
     .floatie { animation: none; }
     .reveal { transition: none; opacity: 1; transform: none; }
   }
+
+  /* Better image handling */
+  .treat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .treat-card:hover .treat-img {
+    transform: scale(1.08);
+  }
 </style>
 </head>
 
@@ -238,9 +249,9 @@
           alt="Assorted decorated cupcakes by JahLicious Sweet Treats"
           class="hero-photo absolute left-0 top-6 sm:top-10 w-[46%] sm:w-[40%] h-[78%] object-cover rounded-[1.75rem] -rotate-6 z-10"
         />
-        <!-- center photo -->
+        <!-- center photo — replaced with higher quality alternative IMG-0206.jpg -->
         <img
-          src="https://i.postimg.cc/8JfxYcg7/IMG-0209.jpg"
+          src="https://i.postimg.cc/Tpr8JKT5/IMG-0206.jpg"
           alt="Spider-Man themed custom cupcakes by JahLicious Sweet Treats"
           class="hero-photo absolute left-1/2 -translate-x-1/2 top-0 w-[50%] sm:w-[44%] h-full object-cover rounded-[1.75rem] z-20"
         />
@@ -302,7 +313,7 @@
 </section>
 
 <!-- =========================================================
-     SIGNATURE TREATS GRID
+     SIGNATURE TREATS GRID — with real photos
 ========================================================= -->
 <section id="treats" class="py-20 sm:py-28 bg-blush">
   <div class="max-w-6xl mx-auto px-6">
@@ -313,49 +324,63 @@
     </div>
 
     <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      <!-- Treat card template repeated -- swap emoji tile for real product photos -->
-
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-pink-200 to-pink-100 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🧁</div>
+      <!-- 1 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/gnv9HxG9/IMG-0207.jpg" alt="Cupcakes &amp; Cakes" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Cupcakes &amp; Cakes</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">From $70</p>
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-rosegold to-pink-100 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🎂</div>
+      <!-- 2 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/Tpr8JKT5/IMG-0206.jpg" alt="Custom Cookie Cakes" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Custom Cookie Cakes</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">DM for pricing</p>
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-pink-300 to-rosegold dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🍪</div>
+      <!-- 3 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/ftS1PyQZ/IMG-0208.jpg" alt="Signature Cookies" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Signature Cookies</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">From $75 / half dozen</p>
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-rosegoldDk to-pink-200 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🍫</div>
+      <!-- 4 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/8JfxYcg7/IMG-0209.jpg" alt="Best-Seller Brownies" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Best-Seller Brownies</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">From $60 / half dozen</p>
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-pink-200 to-rosegold dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🎉</div>
+      <!-- 5 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/Fdkw6zXL/IMG-0211.jpg" alt="Custom Party Orders" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Custom Party Orders</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">DM for pricing</p>
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
+      <!-- 6 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
         <div class="aspect-square bg-gradient-to-br from-pink-100 to-pink-300 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🍭</div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Mini Cakesicles &amp; Cake Pans</h3>
@@ -363,7 +388,8 @@
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
+      <!-- 7 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
         <div class="aspect-square bg-gradient-to-br from-rosegold to-pink-300 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🔤</div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Pull-Apart Letter Cupcakes</h3>
@@ -371,8 +397,11 @@
         </div>
       </div>
 
-      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2">
-        <div class="aspect-square bg-gradient-to-br from-pink-300 to-pink-100 dotted-texture flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">🍓</div>
+      <!-- 8 -->
+      <div class="reveal group bg-white rounded-3xl shadow-card overflow-hidden transition-transform hover:-translate-y-2 treat-card">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://i.postimg.cc/gnv9HxG9/IMG-0207.jpg" alt="Chocolate-Dipped Treats" class="treat-img" />
+        </div>
         <div class="p-4 text-center">
           <h3 class="font-bold text-plum leading-tight">Chocolate-Dipped Treats</h3>
           <p class="text-pink-600 text-sm font-semibold mt-1">From $15</p>

@@ -109,6 +109,12 @@
   /* ---------- Selected option ring pulse ---------- */
   .option-card.selected { box-shadow: 0 0 0 3px #D63F70; transform: translateY(-2px); }
 
+  /* ---------- Hero photo stack ---------- */
+  .hero-photo {
+    box-shadow: 0 14px 34px -10px rgba(87, 48, 63, 0.35);
+    border: 6px solid #FFFDF9;
+  }
+
   /* ---------- Respect reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     .floatie { animation: none; }
@@ -124,14 +130,6 @@
 ========================================================= -->
 <div class="bg-pink-600 text-white text-xs sm:text-sm">
   <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center gap-2 text-center">
-    <!-- HERO IMAGE STACK -->
-<div class="relative flex justify-center mb-10">
- <div class="relative flex justify-center mb-14 h-56">
-<div class="relative flex justify-center mb-16 mt-10 h-[260px]">
-<div class="flex justify-center mt-10 mb-10">
-  <div class="relative w-[320px] h-[220px]">
-
-</div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 shrink-0">
       <path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 6.6 11.1 7.4 11.8.3.3.9.3 1.2 0C13.4 21.1 20 15.4 20 10c0-4.4-3.6-8-8-8Zm0 10.5A2.5 2.5 0 1 1 12 7.5a2.5 2.5 0 0 1 0 5Z"/>
     </svg>
@@ -226,6 +224,33 @@
       <a href="#menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-pink-50 text-pink-600 font-bold px-8 py-3.5 rounded-full border-2 border-pink-300 transition-all hover:-translate-y-1">
         Peek the Menu <span>🧁</span>
       </a>
+    </div>
+
+    <!-- =========================================================
+         HERO PHOTO STACK — real bakery photos, fanned/overlapping
+    ========================================================= -->
+    <div class="reveal in-view relative mt-16 sm:mt-20 max-w-2xl mx-auto">
+      <span aria-hidden="true" class="absolute -top-6 left-1/2 -translate-x-1/2 text-3xl sm:text-4xl text-pink-500 z-20">✨</span>
+      <div class="relative h-[280px] sm:h-[380px] md:h-[440px]">
+        <!-- left photo -->
+        <img
+          src="https://i.postimg.cc/ftS1PyQZ/IMG-0208.jpg"
+          alt="Assorted decorated cupcakes by JahLicious Sweet Treats"
+          class="hero-photo absolute left-0 top-6 sm:top-10 w-[46%] sm:w-[40%] h-[78%] object-cover rounded-[1.75rem] -rotate-6 z-10"
+        />
+        <!-- center photo -->
+        <img
+          src="https://i.postimg.cc/8JfxYcg7/IMG-0209.jpg"
+          alt="Spider-Man themed custom cupcakes by JahLicious Sweet Treats"
+          class="hero-photo absolute left-1/2 -translate-x-1/2 top-0 w-[50%] sm:w-[44%] h-full object-cover rounded-[1.75rem] z-20"
+        />
+        <!-- right photo -->
+        <img
+          src="https://i.postimg.cc/Fdkw6zXL/IMG-0211.jpg"
+          alt="Strawberry chocolate-dipped treats by JahLicious Sweet Treats"
+          class="hero-photo absolute right-0 top-8 sm:top-14 w-[46%] sm:w-[40%] h-[75%] object-cover rounded-[1.75rem] rotate-6 z-10"
+        />
+      </div>
     </div>
   </div>
 </section>

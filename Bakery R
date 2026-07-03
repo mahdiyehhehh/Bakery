@@ -1,1 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>R.Cravings — Customized Cakes | Quezon City</title>
+<meta name="description" content="R.Cravings — custom, made-to-order cakes in Quezon City. DTI registered. Round & heart cakes, custom flavors, and made-from-scratch designs." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ===========================================================
+     DESIGN TOKENS
+     Palette: Cream #F5F0E3 · Ink #262A1C · Olive #6E7C3C
+              Cobalt #1E3AA8 · Pink #FF6FA0 · Lime #D7DE6E · Burnt Orange #E4622A
+     Display type: Fraunces (900, slightly wonky/soft) — matches the
+     hand-tooled chunky lettering in R.Cravings' highlight covers.
+     Body type: Nunito — rounded, friendly, easy to read.
+     Signature: full-bleed color "stamp panels" that mirror the way
+     R.Cravings already presents Menu / Flavors / Order Form as
+     colored IG highlight cards — brought onto the web as sections.
+     =========================================================== */
+  :root{
+    --cream:#F5F0E3;
+    --cream-2:#EFE8D4;
+    --ink:#262A1C;
+    --olive:#6E7C3C;
+    --olive-dark:#4E5A29;
+    --cobalt:#1E3AA8;
+    --cobalt-dark:#152A80;
+    --pink:#FF6FA0;
+    --pink-soft:#FFD9E8;
+    --lime:#D7DE6E;
+    --orange:#E4622A;
+    --radius:22px;
+    --radius-sm:12px;
+    --shadow:0 10px 30px rgba(38,42,28,0.12);
+    --maxw:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    line-height:0.95;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  :focus-visible{
+    outline:3px solid var(--orange);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.78rem;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    font-size:0.95rem;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--orange); color:var(--cream);}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(228,98,42,0.35);}
+  .btn-outline{background:transparent; border-color:currentColor;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,240,227,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(38,42,28,0.08);
+    transition:box-shadow .2s ease;
+  }
+  header.scrolled{box-shadow:0 6px 20px rgba(38,42,28,0.08);}
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:900; font-size:1.25rem;}
+  .brand svg{width:42px; height:42px; flex-shrink:0;}
+  .nav-links{display:flex; gap:28px; align-items:center;}
+  .nav-links a{font-weight:700; font-size:0.95rem; position:relative; padding:4px 0;}
+  .nav-links a:hover{color:var(--orange);}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .hamburger{display:none; background:none; border:none; cursor:pointer; padding:8px;}
+  .hamburger span{display:block; width:24px; height:3px; background:var(--ink); margin:5px 0; border-radius:2px;}
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; inset:64px 0 auto 0; background:var(--cream);
+      flex-direction:column; padding:24px; gap:18px;
+      transform:translateY(-120%); transition:transform .25s ease;
+      border-bottom:1px solid rgba(38,42,28,0.1);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .hamburger{display:block;}
+    .nav-cta .btn-outline{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:80px 0 60px; position:relative; overflow:hidden;}
+  .hero .wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  .hero-eyebrow{color:var(--olive-dark); margin-bottom:14px;}
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.4rem); font-style:italic;}
+  .hero h1 span{color:var(--orange); font-style:normal;}
+  .hero p.lead{max-width:44ch; margin:20px 0 30px; font-size:1.08rem; color:#3c4030;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-facts{
+    margin-top:34px; display:flex; gap:26px; flex-wrap:wrap;
+    font-size:0.9rem; font-weight:700; color:var(--olive-dark);
+  }
+  .hero-facts div{display:flex; align-items:center; gap:8px;}
+  .hero-art{
+    background:var(--olive);
+    border-radius:var(--radius);
+    aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    box-shadow:var(--shadow);
+  }
+  .hero-art svg{width:62%; height:62%;}
+  .badge-tag{
+    position:absolute; top:-16px; right:-16px;
+    background:var(--orange); color:var(--cream);
+    width:96px; height:96px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:900; font-size:0.72rem;
+    text-align:center; line-height:1.1; box-shadow:var(--shadow);
+    transform:rotate(8deg);
+  }
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{order:-1; max-width:340px; margin:0 auto;}
+  }
+
+  /* ---------- PANEL SECTIONS (the "stamp card" signature) ---------- */
+  .panel{padding:88px 0;}
+  .panel-head{max-width:640px; margin:0 auto 48px; text-align:center;}
+  .panel-head h2{font-size:clamp(2.4rem,5vw,3.6rem); font-style:italic;}
+  .panel-head p{margin-top:14px; font-size:1.02rem; opacity:0.85;}
+
+  .panel-cream{background:var(--cream);}
+  .panel-olive{background:var(--olive); color:var(--cream);}
+  .panel-cobalt{background:var(--cobalt); color:var(--cream);}
+  .panel-lime{background:var(--lime); color:var(--olive-dark);}
+  .panel-pink{background:var(--pink); color:#5a1030;}
+
+  /* ---------- FLAVORS ---------- */
+  .flavor-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .flavor-card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:var(--radius); padding:26px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .panel-cream .flavor-card{background:var(--cream-2); border-color:rgba(38,42,28,0.08);}
+  .flavor-swatch{
+    width:100%; aspect-ratio:4/3; border-radius:var(--radius-sm);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flavor-swatch svg{width:60%; height:60%;}
+  .flavor-card h3{font-size:1.35rem; font-style:italic;}
+  .flavor-card p{font-size:0.92rem; margin:0; opacity:0.9;}
+  @media (max-width:860px){ .flavor-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .flavor-grid{grid-template-columns:1fr;} }
+
+  /* ---------- PRICING ---------- */
+  .price-cols{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .price-card{
+    background:rgba(255,255,255,0.1);
+    border-radius:var(--radius); padding:30px;
+  }
+  .panel-lime .price-card{background:rgba(255,255,255,0.55);}
+  .price-card h3{font-size:1.6rem; font-style:italic; margin-bottom:4px;}
+  .price-card .note{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:800; opacity:0.75; margin-bottom:18px;}
+  .price-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 16px; border-radius:999px; margin-bottom:8px;
+    font-weight:800;
+  }
+  .price-row.hi{background:var(--pink); color:#5a1030;}
+  .panel-cobalt .price-row.hi{background:var(--lime); color:var(--olive-dark);}
+  .price-foot{margin-top:16px; font-size:0.82rem; opacity:0.75;}
+  @media (max-width:760px){ .price-cols{grid-template-columns:1fr;} }
+
+  /* ---------- CUSTOM FLAVORS CALLOUT ---------- */
+  .callout{
+    max-width:720px; margin:0 auto; background:var(--pink); color:#5a1030;
+    border-radius:var(--radius); padding:36px; text-align:center;
+    box-shadow:var(--shadow);
+  }
+  .callout p{margin:0 0 14px; font-weight:700;}
+  .callout .fine{font-size:0.85rem; font-weight:600; opacity:0.85;}
+
+  /* ---------- ORDER FORM ---------- */
+  .form-card{
+    max-width:680px; margin:0 auto; background:var(--cream);
+    border-radius:var(--radius); padding:40px; box-shadow:var(--shadow);
+  }
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-weight:800; font-size:0.85rem; color:var(--olive-dark);}
+  label .hint{font-weight:600; font-size:0.75rem; opacity:0.65; display:block;}
+  input,select,textarea{
+    font-family:'Nunito',sans-serif; font-size:0.95rem;
+    padding:12px 14px; border-radius:var(--radius-sm);
+    border:2px solid rgba(38,42,28,0.15); background:#fff; color:var(--ink);
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--orange); outline:none;}
+  textarea{resize:vertical; min-height:80px;}
+  .form-actions{margin-top:22px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .form-note{font-size:0.82rem; opacity:0.7;}
+  @media (max-width:600px){ .form-grid{grid-template-columns:1fr;} }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
+  .faq-item{
+    background:var(--cream-2); border-radius:var(--radius-sm);
+    overflow:hidden; border:1px solid rgba(38,42,28,0.08);
+  }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:18px 22px; font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem;
+    display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--ink);
+  }
+  .faq-q .icon{transition:transform .2s ease; font-size:1.2rem; color:var(--orange); flex-shrink:0;}
+  .faq-item.open .icon{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+  .faq-a p{margin:0 22px 18px; font-size:0.92rem; opacity:0.85;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:var(--cream); padding:64px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px;}
+  .footer-brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:900; font-size:1.3rem; margin-bottom:14px;}
+  .footer-brand svg{width:36px; height:36px;}
+  footer h4{font-family:'Nunito',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.78rem; font-weight:800; color:var(--lime); margin-bottom:14px;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  footer a:hover{color:var(--orange);}
+  .footer-bottom{
+    margin-top:48px; padding-top:24px; border-top:1px solid rgba(245,240,227,0.15);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.8rem; opacity:0.7;
+  }
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr; gap:28px;} }
+
+  .fade-in{animation:fadeIn .7s ease both;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- ============ SHARED LOGO (reused via <use>) ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="logo-mark" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path id="circlePath" d="M50,10 a40,40 0 1,1 -0.1,0" fill="none"/>
+    <text font-family="Nunito, sans-serif" font-weight="800" font-size="8.5" letter-spacing="2" fill="currentColor">
+      <textPath href="#circlePath" startOffset="2%">R.CRAVINGS • QUEZON CITY • CUSTOM CAKES •</textPath>
+    </text>
+    <g stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M35 55 q15 -22 30 0 q3 14 -15 18 q-18 -4 -15 -18 Z"/>
+      <path d="M38 55 v10 M62 55 v10 M45 60 v8 M55 60 v8"/>
+      <circle cx="50" cy="50" r="1.6" fill="currentColor"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="#top" class="brand" style="color:var(--orange)">
+      <svg viewBox="0 0 100 100"><use href="#logo-mark"/></svg>
+      R.Cravings
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#flavors">Flavors</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#custom">Custom Orders</a>
+      <a href="#order">Order Form</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#order" class="btn btn-primary">Order a Cake</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="fade-in">
+        <p class="eyebrow hero-eyebrow">Quezon City · DTI Registered</p>
+        <h1>Cakes made<br>for <span>your</span><br>craving.</h1>
+        <p class="lead">R.Cravings bakes fully customized cakes — round or heart-shaped, classic or custom flavor — made to order and ready for pickup every day from 11AM.</p>
+        <div class="hero-actions">
+          <a href="#order" class="btn btn-primary">Start an Order</a>
+          <a href="#flavors" class="btn btn-outline">See Flavors</a>
+        </div>
+        <div class="hero-facts">
+          <div>📍 San Bartolome, Quezon City</div>
+          <div>🕚 Pickup from 11AM, open everyday</div>
+        </div>
+      </div>
+      <div class="hero-art fade-in">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--cream)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M50 120 h100 l-8 40 a10 10 0 0 1 -10 8 h-64 a10 10 0 0 1 -10 -8 Z"/>
+          <path d="M55 120 v-25 a45 45 0 0 1 90 0 v25"/>
+          <path d="M70 95 q10 -14 0 -26 M100 95 q10 -14 0 -26 M130 95 q10 -14 0 -26"/>
+          <circle cx="100" cy="152" r="10"/>
+        </svg>
+        <span class="badge-tag">EST.<br>QUEZON<br>CITY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLAVORS ============ -->
+  <section class="panel panel-cream" id="flavors">
+    <div class="wrap">
+      <div class="panel-head">
+        <p class="eyebrow" style="color:var(--olive)">Flavors</p>
+        <h2>Pick your cake's<br><em>personality.</em></h2>
+        <p>Every cake starts as a soft chiffon base, layered by hand. Choose a classic or one of our signature flavors.</p>
+      </div>
+      <div class="flavor-grid">
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:var(--olive)">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--cream)" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Moist Chocolate</h3>
+          <p>A rich, decadent chocolate lover's dream — moist chocolate cake layered with dark chocolate ganache, crunchy chocolate chips, and luscious chocolate mousse.</p>
+        </article>
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:var(--cobalt)">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--cream)" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Vanilla</h3>
+          <p>Light, fluffy, and timeless — vanilla chiffon cake paired with smooth, airy vanilla chantilly.</p>
+        </article>
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:var(--pink)">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#5a1030" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Strawberry</h3>
+          <p>Light, fruity, and refreshing — vanilla chiffon cake filled with luscious strawberry chantilly and bursts of real strawberry compote.</p>
+        </article>
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:#a8794a">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--cream)" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Mocha</h3>
+          <p>Soft coffee chiffon cake layered with dark chocolate ganache, crunchy chocolate chips, and creamy coffee mousse.</p>
+        </article>
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:#7B5CC4">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--cream)" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Ube</h3>
+          <p>A delightful twist on a Filipino favorite — ube chiffon cake filled with silky ube cream.</p>
+        </article>
+        <article class="flavor-card">
+          <div class="flavor-swatch" style="background:var(--lime)">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--olive-dark)" stroke-width="3"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M14 26h36M14 38h36"/></svg>
+          </div>
+          <h3>Biscoff</h3>
+          <p>Fluffy cinnamon chiffon cake layered with luscious Biscoff whipped cream and gentle bits of crushed Biscoff biscuits for a subtle crunch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="panel panel-cobalt" id="pricing">
+    <div class="wrap">
+      <div class="panel-head" style="color:var(--cream)">
+        <p class="eyebrow" style="color:var(--lime)">Pricing</p>
+        <h2>Starting prices,<br><em>by size.</em></h2>
+        <p style="opacity:0.85">Final price may vary depending on the requested design.</p>
+      </div>
+      <div class="price-cols">
+        <div class="price-card">
+          <h3>Round Cakes</h3>
+          <p class="note">Starting price</p>
+          <div class="price-row"><span>Bento</span><span>₱300</span></div>
+          <div class="price-row hi"><span>4 × 4</span><span>₱550</span></div>
+          <div class="price-row"><span>6 × 2.5</span><span>₱800</span></div>
+          <div class="price-row hi"><span>6 × 4</span><span>₱1,000</span></div>
+          <div class="price-row"><span>7 × 4</span><span>₱1,300</span></div>
+          <div class="price-row hi"><span>8 × 4</span><span>₱1,600</span></div>
+        </div>
+        <div class="price-card">
+          <h3>Heart Cakes</h3>
+          <p class="note">Starting price</p>
+          <div class="price-row"><span>6 × 4</span><span>₱1,070</span></div>
+          <div class="price-row hi"><span>7 × 4</span><span>₱1,400</span></div>
+          <div class="price-row"><span>8 × 4</span><span>₱1,750</span></div>
+          <p class="price-foot">Prices shown are starting points — send us your design idea for an exact quote.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CUSTOM FLAVORS CALLOUT ============ -->
+  <section class="panel panel-lime" id="custom">
+    <div class="wrap">
+      <div class="panel-head" style="color:var(--olive-dark)">
+        <p class="eyebrow">Custom Flavors</p>
+        <h2>Have something<br><em>specific in mind?</em></h2>
+      </div>
+      <div class="callout">
+        <p>Our team is made up of culinary-trained bakers, so your cake is in expert hands. We offer custom flavors on request — available for cakes 8×5 inches and up, or for tiered cakes.</p>
+        <p class="fine">Custom flavor orders must be placed at least 2–3 weeks before your delivery date. Pricing may vary depending on the complexity of the flavor or cost of ingredients.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDER FORM ============ -->
+  <section class="panel panel-pink" id="order">
+    <div class="wrap">
+      <div class="panel-head" style="color:#5a1030">
+        <p class="eyebrow">Order Form</p>
+        <h2>Let's build<br><em>your cake.</em></h2>
+        <p>Fill this out and it'll open a ready-to-send message — we'll follow up with a quote.</p>
+      </div>
+
+      <form class="form-card" id="orderForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="fullName">Full name</label>
+            <input id="fullName" name="fullName" type="text" required>
+          </div>
+          <div class="field">
+            <label for="username">Account username</label>
+            <input id="username" name="username" type="text" placeholder="Instagram / Facebook">
+          </div>
+          <div class="field">
+            <label for="contact">Contact number</label>
+            <input id="contact" name="contact" type="tel" required>
+          </div>
+          <div class="field">
+            <label for="size">Size</label>
+            <select id="size" name="size" required>
+              <option value="">Select a size</option>
+              <optgroup label="Round Cakes">
+                <option>Bento — ₱300</option>
+                <option>4×4 — ₱550</option>
+                <option>6×2.5 — ₱800</option>
+                <option>6×4 — ₱1,000</option>
+                <option>7×4 — ₱1,300</option>
+                <option>8×4 — ₱1,600</option>
+              </optgroup>
+              <optgroup label="Heart Cakes">
+                <option>6×4 — ₱1,070</option>
+                <option>7×4 — ₱1,400</option>
+                <option>8×4 — ₱1,750</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="field">
+            <label for="flavor">Flavor</label>
+            <select id="flavor" name="flavor" required>
+              <option value="">Select a flavor</option>
+              <option>Moist Chocolate</option>
+              <option>Vanilla</option>
+              <option>Strawberry</option>
+              <option>Mocha</option>
+              <option>Ube</option>
+              <option>Biscoff</option>
+              <option>Custom flavor (please describe below)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="delivery">Date &amp; time of delivery <span class="hint">11AM earliest pickup</span></label>
+            <input id="delivery" name="delivery" type="datetime-local" required>
+          </div>
+          <div class="field">
+            <label for="payment">Mode of payment</label>
+            <select id="payment" name="payment" required>
+              <option value="">Select payment</option>
+              <option>GCash</option>
+              <option>BPI</option>
+              <option>SeaBank</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="baseColor">Cake base color/s</label>
+            <input id="baseColor" name="baseColor" type="text">
+          </div>
+          <div class="field full">
+            <label for="design">Cake design</label>
+            <textarea id="design" name="design" placeholder="Describe your dream design, or note that you'll send a reference photo"></textarea>
+          </div>
+          <div class="field full">
+            <label for="dedication">Dedication</label>
+            <input id="dedication" name="dedication" type="text" placeholder="What should the cake say?">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send Order Details</button>
+          <span class="form-note">Opens your email app with everything pre-filled.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="panel panel-cream" id="faq">
+    <div class="wrap">
+      <div class="panel-head">
+        <p class="eyebrow" style="color:var(--olive)">FAQs</p>
+        <h2>Good to<br><em>know.</em></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">What time can I pick up my cake? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Pickup starts at 11AM, every day. Exact pickup time is confirmed when you place your order.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How far in advance should I order? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Standard flavors can be booked closer to your date, but custom flavors need at least 2–3 weeks' notice, especially for tiered cakes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What payment methods do you accept? <span class="icon">+</span></button>
+          <div class="faq-a"><p>We accept GCash, BPI, and SeaBank.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Where are you located? <span class="icon">+</span></button>
+          <div class="faq-a"><p>We're based in San Bartolome, Quezon City. All orders are for pickup.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand" style="color:var(--orange)">
+          <svg viewBox="0 0 100 100"><use href="#logo-mark"/></svg>
+          R.Cravings
+        </div>
+        <p style="max-width:32ch; opacity:0.8;">Customized cakes, baked to order in Quezon City. DTI Registered.</p>
+      </div>
+      <div>
+        <h4>Visit &amp; Hours</h4>
+        <ul>
+          <li>📍 San Bartolome, Quezon City</li>
+          <li>🕚 Open everyday, pickup 11AM onwards</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="#">Instagram — @r.cravings_</a></li>
+          <li><a href="#">Threads — @r.cravings_</a></li>
+          <li><a href="#">Facebook — R.Cravings_</a></li>
+          <li><a href="#">TikTok — @r.cravings_</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> R.Cravings. All rights reserved.</span>
+      <span>DTI Registered</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(link =>
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Order form -> pre-filled email
+  document.getElementById('orderForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const f = new FormData(this);
+    const lines = [
+      `Full name: ${f.get('fullName')}`,
+      `Account username: ${f.get('username')}`,
+      `Contact number: ${f.get('contact')}`,
+      `Size: ${f.get('size')}`,
+      `Flavor: ${f.get('flavor')}`,
+      `Date & time of delivery: ${f.get('delivery')}`,
+      `Mode of payment: ${f.get('payment')}`,
+      `Cake design: ${f.get('design')}`,
+      `Cake base color/s: ${f.get('baseColor')}`,
+      `Dedication: ${f.get('dedication')}`
+    ].join('%0D%0A');
+    // Replace with the bakery's real order inbox
+    window.location.href = `mailto:orders@rcravings.example?subject=New%20Cake%20Order%20-%20${encodeURIComponent(f.get('fullName') || '')}&body=${lines}`;
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
 
